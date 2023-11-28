@@ -4,7 +4,8 @@
              x:Class="SnakesLaddersTue.MainPage"
              Title="Snakes and Ladders">
 
-    <Grid BackgroundColor="Blue" HorizontalOptions="Center" VerticalOptions="Center"
+    <Grid x:Name="GameBoardGrid" BackgroundColor="Blue" HorizontalOptions="Center" 
+          VerticalOptions="Center"
           RowDefinitions="*,*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
           HeightRequest="480" WidthRequest="480">
 
