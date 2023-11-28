@@ -49,6 +49,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appicon.svg" />
+	  <None Remove="Resources\Images\player1.svg" />
 	  <None Remove="Resources\Images\snakeboard.png" />
 	  <None Remove="Resources\Splash\svg.svg" />
 	</ItemGroup>
