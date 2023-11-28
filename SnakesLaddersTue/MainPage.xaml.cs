@@ -7,12 +7,28 @@ namespace SnakesLaddersTue
         private Color BoardColour = Color.FromArgb("#2B0B98");
         private Random random;
         private Player player1;
+        private bool dicerolling;
+
+        public bool Dicerolling
+        {
+            get => dicerolling;
+            set
+            {
+                if (dicerolling == value) return;
+                dicerolling = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NotDiceRolling));
+            }
+        }
+        public bool NotDiceRolling => !Dicerolling;
 
         public MainPage() {
             InitializeComponent();
             CreatetheGrid();
             random = new Random();
-            player1 = new Player(Player1Piece, "Donny");
+            player1 = new Player(Player1Piece, "Donny", GameBoardGrid);
+            dicerolling = false;
+            BindingContext = this;
         }
 
         private int WhatNumber(int row, int col) {
@@ -71,9 +87,13 @@ namespace SnakesLaddersTue
         }
 
         private async void DiceRollBtn_Clicked(object sender, EventArgs e) {
+            if (Dicerolling)
+                return;
+            Dicerolling = true;
             int roll = random.Next(1, 7);
             DiceRollLbl.Text = roll.ToString();
             await player1.MovePlayerCharacter(roll);
+            Dicerolling = false;
         }
 
 
