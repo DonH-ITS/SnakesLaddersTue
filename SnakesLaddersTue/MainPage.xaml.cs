@@ -10,6 +10,23 @@ namespace SnakesLaddersTue
             CreatetheGrid();
         }
 
+        private int WhatNumber(int row, int col) {
+            if( row % 2 == 0 ) {
+                int start = 100 - row * 10;
+                return start - col;
+            }
+            else
+            {
+                int start = (9 - row) * 10 + 1;
+                return start + col;
+            }
+        }
+        
+        private LayoutOptions WhatPosition(int row) {
+            if (row % 2 == 0) return LayoutOptions.End;
+            else return LayoutOptions.Start;
+        }
+
         private void CreatetheGrid() {
             for (int i = 0; i < 10; ++i) {
                 for (int j = 0; j < 10; ++j) {
@@ -27,16 +44,17 @@ namespace SnakesLaddersTue
                         {
                             EndPoint = new Point(0, 1),
                             GradientStops = new GradientStopCollection
-                            { 
+                            {
                                 new GradientStop { Color = Colors.Orange, Offset = 0.1f },
                                 new GradientStop { Color = Colors.Brown, Offset = 1.0f }
                             },
                         },
                         Content = new Label
                         {
-                            Text = "1",
+                            Text = WhatNumber(i, j).ToString(),
                             TextColor = Colors.White,
-                            FontSize = 18,
+                            FontSize = 10,
+                            HorizontalOptions = WhatPosition(i),
                             FontAttributes = FontAttributes.Bold
                         }
                     };
