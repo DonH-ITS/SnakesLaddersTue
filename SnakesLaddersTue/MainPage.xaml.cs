@@ -6,11 +6,13 @@ namespace SnakesLaddersTue
     {
         private Color BoardColour = Color.FromArgb("#2B0B98");
         private Random random;
+        private Player player1;
 
         public MainPage() {
             InitializeComponent();
             CreatetheGrid();
             random = new Random();
+            player1 = new Player(Player1Piece, "Donny");
         }
 
         private int WhatNumber(int row, int col) {
@@ -68,9 +70,12 @@ namespace SnakesLaddersTue
             }
         }
 
-        private void DiceRollBtn_Clicked(object sender, EventArgs e) {
+        private async void DiceRollBtn_Clicked(object sender, EventArgs e) {
             int roll = random.Next(1, 7);
             DiceRollLbl.Text = roll.ToString();
+            await player1.MovePlayerCharacter(roll);
         }
+
+
     }
 }
