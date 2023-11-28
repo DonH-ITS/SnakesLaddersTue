@@ -3,16 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SnakesLaddersTue.MainPage"
              Title="Snakes and Ladders">
-
+    <VerticalStackLayout>
     <Grid x:Name="GameBoardGrid" BackgroundColor="Blue" HorizontalOptions="Center" 
           VerticalOptions="Center"
-          RowDefinitions="*,*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
-          HeightRequest="480" WidthRequest="480">
+          RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
+          HeightRequest="576" WidthRequest="480">
 
-       <!-- <Image Source="snakeboard.png" Grid.Row="0" Grid.Column="0"
+            <Label x:Name="DiceRollLbl" Grid.Row="11" Grid.Column="2" FontSize="14" TextColor="White"/>
+            <Button Text="Roll" Grid.Row="10" Grid.Column="8" Grid.ColumnSpan="2"
+                    x:Name="DiceRollBtn" Clicked="DiceRollBtn_Clicked"/>
+            <!-- <Image Source="snakeboard.png" Grid.Row="0" Grid.Column="0"
            Grid.ColumnSpan="10" Grid.RowSpan="10"/>-->
 
     </Grid>
+        
+    </VerticalStackLayout>
 
 
 </ContentPage>
