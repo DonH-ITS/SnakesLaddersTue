@@ -4,6 +4,14 @@
              x:Class="SnakesLaddersTue.MainPage"
              Title="Snakes and Ladders">
 
-   
+    <Grid BackgroundColor="Blue" HorizontalOptions="Center" VerticalOptions="Center"
+          RowDefinitions="*,*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
+          HeightRequest="480" WidthRequest="480">
+
+       <!-- <Image Source="snakeboard.png" Grid.Row="0" Grid.Column="0"
+           Grid.ColumnSpan="10" Grid.RowSpan="10"/>-->
+
+    </Grid>
+
 
 </ContentPage>
