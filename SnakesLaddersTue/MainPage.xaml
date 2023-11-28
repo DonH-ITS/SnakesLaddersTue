@@ -9,6 +9,9 @@
           RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
           HeightRequest="576" WidthRequest="480">
 
+            <Image x:Name="Player1Piece" Source="player1.png" ZIndex="20" Scale="0.8"
+                   HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="9" Grid.Column="0"/>
+
             <Label x:Name="DiceRollLbl" Grid.Row="11" Grid.Column="2" FontSize="14" TextColor="White"/>
             <Button Text="Roll" Grid.Row="10" Grid.Column="8" Grid.ColumnSpan="2"
                     x:Name="DiceRollBtn" Clicked="DiceRollBtn_Clicked"/>
