@@ -24,14 +24,19 @@ namespace SnakesLaddersTue
 
         public MainPage() {
             InitializeComponent();
+            InitialiseVariables();
+            BindingContext = this;
+        }
+
+        public void InitialiseVariables()
+        {
             CreatetheGrid();
             random = new Random();
             player1 = new Player(Player1Piece, "Donny", GameBoardGrid);
             dicerolling = false;
-            BindingContext = this;
         }
 
-        private int WhatNumber(int row, int col) {
+        private static int WhatNumber(int row, int col) {
             if( row % 2 == 0 ) {
                 int start = 100 - row * 10;
                 return start - col;
@@ -43,7 +48,7 @@ namespace SnakesLaddersTue
             }
         }
         
-        private LayoutOptions WhatPosition(int row) {
+        private static LayoutOptions WhatPosition(int row) {
             if (row % 2 == 0) return LayoutOptions.End;
             else return LayoutOptions.Start;
         }

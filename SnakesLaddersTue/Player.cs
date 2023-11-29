@@ -22,11 +22,12 @@ namespace SnakesLaddersTue
         }
 
         public async Task MovePlayerCharacter(int amount) {
+            //Calculate the steps for a movement. Do it now in case we change the dimensions while the game is running
             double xStep = mainGrid.Width / 10;
             double yStep = mainGrid.Height / 12;
             //column += amount;
             for(int i=0; i < amount; i++) {
-                if (position % 10 == 0) { //We will want them to move Vertically
+                if (position % 10 == 0) { //We will want them to move Vertically when their position is a multiple of 10
                     await MoveVertically(xStep);
                 }
                 else {
@@ -39,6 +40,8 @@ namespace SnakesLaddersTue
         public async Task MoveHorizontally(double step) {
             position++;
             int direction = 1;
+
+            //If on an even row move right to left
             if (row % 2 == 0) direction = -1;
 
             column += direction;
