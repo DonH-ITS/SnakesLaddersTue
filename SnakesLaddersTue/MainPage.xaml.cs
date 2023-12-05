@@ -95,12 +95,64 @@ namespace SnakesLaddersTue
             if (Dicerolling)
                 return;
             Dicerolling = true;
-            int roll = random.Next(1, 7);
-            //DiceRollLbl.Text = roll.ToString();
-            await player1.MovePlayerCharacter(roll);
+            await RollTheDice();
             Dicerolling = false;
         }
 
+        private Ellipse GetEllipse() {
+            Ellipse ell = new Ellipse()
+            {
+                Fill = Color.FromRgb(0, 0, 0),
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center,
+            };
+            return ell;
+        }
+
+        private async Task RollTheDice() {
+            int roll = random.Next(1, 7);
+            //DiceRollLbl.Text = roll.ToString();
+            FillinDiceGrid(roll, DiceGrid);
+            await player1.MovePlayerCharacter(roll);
+        }
+
+        private void FillinDiceGrid(int roll, Grid grid) {
+            switch (roll) {
+                case 1:
+                    grid.Add(GetEllipse(), 1, 1);
+                    break;
+                case 2:
+                    grid.Add(GetEllipse(), 0, 0);
+                    grid.Add(GetEllipse(), 2, 2);
+                    break;
+                case 3:
+                    for(int i=0; i < 3; i++) {
+                        grid.Add(GetEllipse(), i, i);
+                    }
+                    break;
+                case 4:
+                    for (int j = 0; j < 3; j += 2) {
+                        for (int k = 0; k < 3; k += 2) {
+                            grid.Add(GetEllipse(), j, k);
+                        }
+                    }
+                    break;
+                case 5:
+                    for (int j = 0; j < 3; j += 2) {
+                        for (int k = 0; k < 3; k += 2) {
+                            grid.Add(GetEllipse(), j, k);
+                        }
+                    }
+                    grid.Add(GetEllipse(), 1, 1);
+                    break;
+                case 6:
+                    for (int j = 0; j < 3; j += 2) {
+                        for (int k = 0; k < 3; ++k) {
+                            grid.Add(GetEllipse(), k, j);
+                        }
+                    }
+                    break;
+            }
 
     }
 }

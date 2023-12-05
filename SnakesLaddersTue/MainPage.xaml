@@ -25,7 +25,8 @@
                           Offset="1.0" />
                     </LinearGradientBrush>
                 </Border.Stroke>
-                <Grid x:Name="DiceGrid" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*"/>
+                <Grid x:Name="DiceGrid" RowSpacing="1" ColumnSpacing="1"
+                      RowDefinitions="*,*,*" ColumnDefinitions="*,*,*"/>
             </Border>
 
             <!--    <Label x:Name="DiceRollLbl" Grid.Row="11" Grid.Column="2" FontSize="14" TextColor="White"/>-->
