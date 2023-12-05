@@ -99,7 +99,7 @@ namespace SnakesLaddersTue
             Dicerolling = false;
         }
 
-        private Ellipse GetEllipse() {
+        private static Ellipse GetEllipse() {
             Ellipse ell = new Ellipse()
             {
                 Fill = Color.FromRgb(0, 0, 0),
@@ -112,11 +112,26 @@ namespace SnakesLaddersTue
         private async Task RollTheDice() {
             int roll = random.Next(1, 7);
             //DiceRollLbl.Text = roll.ToString();
+            CleartheDiceGrid(DiceGrid);
             FillinDiceGrid(roll, DiceGrid);
             await player1.MovePlayerCharacter(roll);
         }
 
-        private void FillinDiceGrid(int roll, Grid grid) {
+        private static void CleartheDiceGrid(Grid grid) {
+            List<View> childrenToRemove = new();
+            foreach (var item in grid.Children) {
+                if (item.GetType() == typeof(Ellipse)) {
+                    childrenToRemove.Add((Ellipse)item);
+                }
+            }
+
+            //Actually remove them from the Grid
+            foreach (var item in childrenToRemove) {
+                grid.Remove(item);
+            }
+        }
+
+        private static void FillinDiceGrid(int roll, Grid grid) {
             switch (roll) {
                 case 1:
                     grid.Add(GetEllipse(), 1, 1);
@@ -126,7 +141,7 @@ namespace SnakesLaddersTue
                     grid.Add(GetEllipse(), 2, 2);
                     break;
                 case 3:
-                    for(int i=0; i < 3; i++) {
+                    for (int i = 0; i < 3; i++) {
                         grid.Add(GetEllipse(), i, i);
                     }
                     break;
@@ -153,6 +168,7 @@ namespace SnakesLaddersTue
                     }
                     break;
             }
+        }
 
     }
 }
