@@ -1,13 +1,22 @@
 ﻿namespace SnakesLaddersTue
 {
-    public class SnakeLadder
-    {
+    public class SnakeLadder {
         private int StartCol;
         private int EndCol;
         private int StartRow;
         private int EndRow;
         private Image img;
         private Grid grid;
+
+        public int[] EndPosition{
+            get
+            {
+                int[] pos = new int[2];
+                pos[0] = EndRow;
+                pos[1] = EndCol;
+                return pos;
+            }
+        }
 
         public SnakeLadder(int StartR, int EndR, int StartC, int EndC, Grid grid) {
             this.StartRow = StartR;
@@ -63,8 +72,12 @@
 
 
 
-        private bool IsPlayerOnIt() {
-            return true;
+        public bool IsPlayerOnIt(int row, int column) {
+            /*  if (row == StartRow && column == StartCol)
+                  return true;
+              else
+                  return false;*/
+            return (row == StartRow && column == StartCol);
         }
     }
 }

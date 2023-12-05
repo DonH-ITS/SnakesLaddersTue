@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls.Shapes;
+﻿
+using Microsoft.Maui.Controls.Shapes;
 
 namespace SnakesLaddersTue
 {
@@ -124,10 +125,18 @@ namespace SnakesLaddersTue
 
         private async Task RollTheDice() {
             int roll = random.Next(1, 7);
+            roll = 3;
             //DiceRollLbl.Text = roll.ToString();
             CleartheDiceGrid(DiceGrid);
             FillinDiceGrid(roll, DiceGrid);
             await player1.MovePlayerCharacter(roll);
+
+            int[] playerpos = player1.CurrentPosition;
+            foreach(var boardpiece in snakeLadderList) {
+                if (boardpiece.IsPlayerOnIt(playerpos[0], playerpos[1])) {
+                    await player1.MovePlayerSnakeLadder(boardpiece.EndPosition[0], boardpiece.EndPosition[1]);
+                }
+            }
         }
 
         private static void CleartheDiceGrid(Grid grid) {

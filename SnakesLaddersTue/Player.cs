@@ -5,13 +5,23 @@ namespace SnakesLaddersTue
     public class Player
     {
         public string Name { get; set; }
-        public int position { get; set; }
-        public int row {  get; set; }
-        public int column { get; set; }
-        public Image playerimage { get; set; }
+        private int position;
+        private int row;
+        private int column;
+        private Image playerimage;
 
-        public Grid mainGrid { get; set; }
+        public int[] CurrentPosition
+        {
+            get
+            {
+                int[] pos = new int[2];
+                pos[0] = row;
+                pos[1] = column;
+                return pos;
+            }
+        }
 
+        private Grid mainGrid;
         public Player(Image img, string name, Grid grid) {
             position = 1;
             row = 9;
@@ -56,6 +66,32 @@ namespace SnakesLaddersTue
             await playerimage.TranslateTo(0, -1*step, 300);
             playerimage.TranslationY = 0;
             playerimage.SetValue(Grid.RowProperty, row);
+        }
+
+        public async Task MovePlayerSnakeLadder(int r, int c) {
+            double xStep = mainGrid.Width / 10;
+            double yStep = mainGrid.Height / 12;
+            int columnchange = c - column;
+            int rowchange = r - row;
+            await playerimage.TranslateTo(xStep*columnchange, yStep*rowchange, 500);
+            row = r;
+            column = c;
+            playerimage.TranslationY = 0;
+            playerimage.TranslationX = 0;
+            playerimage.SetValue(Grid.RowProperty, row);
+            playerimage.SetValue(Grid.ColumnProperty, column);
+            position = WhatNumber(row, column);
+        }
+
+        private static int WhatNumber(int row, int col) {
+            if (row % 2 == 0) {
+                int start = 100 - row * 10;
+                return start - col;
+            }
+            else {
+                int start = (9 - row) * 10 + 1;
+                return start + col;
+            }
         }
     }
 }
