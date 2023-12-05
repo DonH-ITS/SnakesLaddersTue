@@ -96,7 +96,7 @@ namespace SnakesLaddersTue
                 return;
             Dicerolling = true;
             int roll = random.Next(1, 7);
-            DiceRollLbl.Text = roll.ToString();
+            //DiceRollLbl.Text = roll.ToString();
             await player1.MovePlayerCharacter(roll);
             Dicerolling = false;
         }

@@ -11,8 +11,24 @@
 
             <Image x:Name="Player1Piece" Source="player1.png" ZIndex="20" Scale="0.8"
                    HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="9" Grid.Column="0"/>
+            <Border StrokeThickness="2"
+        StrokeShape="RoundRectangle 4,4,4,4"
+        Background="#FFFFFF"
+        Padding="2,2"
+        HorizontalOptions="Fill" Scale="0.9"
+         Grid.Row="10" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <Border.Stroke>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="Orange"
+                          Offset="0.1" />
+                        <GradientStop Color="Brown"
+                          Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Stroke>
+                <Grid x:Name="DiceGrid" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*"/>
+            </Border>
 
-            <Label x:Name="DiceRollLbl" Grid.Row="11" Grid.Column="2" FontSize="14" TextColor="White"/>
+            <!--    <Label x:Name="DiceRollLbl" Grid.Row="11" Grid.Column="2" FontSize="14" TextColor="White"/>-->
             <Button Text="Roll" Grid.Row="10" Grid.Column="8" Grid.ColumnSpan="2"
                     x:Name="DiceRollBtn" Clicked="DiceRollBtn_Clicked" IsEnabled="{Binding NotDiceRolling}"/>
             <!-- <Image Source="snakeboard.png" Grid.Row="0" Grid.Column="0"
