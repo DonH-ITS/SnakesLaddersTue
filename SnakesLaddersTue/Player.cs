@@ -9,6 +9,7 @@ namespace SnakesLaddersTue
         private int row;
         private int column;
         private Image playerimage;
+        public static Grid mainGrid;
 
         public int[] CurrentPosition
         {
@@ -21,14 +22,12 @@ namespace SnakesLaddersTue
             }
         }
 
-        private Grid mainGrid;
-        public Player(Image img, string name, Grid grid) {
+        public Player(Image img, string name) {
             position = 1;
             row = 9;
             column = 0;
             playerimage = img;
             this.Name = name;
-            this.mainGrid = grid;
         }
 
         public async Task MovePlayerCharacter(int amount) {

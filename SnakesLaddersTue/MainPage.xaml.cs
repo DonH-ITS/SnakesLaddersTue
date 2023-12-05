@@ -34,7 +34,8 @@ namespace SnakesLaddersTue
         {
             CreatetheGrid();
             random = new Random();
-            player1 = new Player(Player1Piece, "Donny", GameBoardGrid);
+            Player.mainGrid = GameBoardGrid;
+            player1 = new Player(Player1Piece, "Donny");
             dicerolling = false;
             CreateSnakesandLadders();
         }
