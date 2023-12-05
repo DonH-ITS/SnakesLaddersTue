@@ -8,6 +8,7 @@ namespace SnakesLaddersTue
         private Random random;
         private Player player1;
         private bool dicerolling;
+        private List<SnakeLadder> snakeLadderList;
 
         public bool Dicerolling
         {
@@ -34,6 +35,18 @@ namespace SnakesLaddersTue
             random = new Random();
             player1 = new Player(Player1Piece, "Donny", GameBoardGrid);
             dicerolling = false;
+            CreateSnakesandLadders();
+        }
+
+        private void CreateSnakesandLadders() {
+            snakeLadderList = new List<SnakeLadder>();
+
+            snakeLadderList.Add(new SnakeLadder(5, 3, 5, 5, GameBoardGrid));
+
+            snakeLadderList.Add(new SnakeLadder(9, 8, 3, 6, GameBoardGrid));
+
+            snakeLadderList.Add(new SnakeLadder(5, 3, 9, 6, GameBoardGrid));
+
         }
 
         private static int WhatNumber(int row, int col) {
