@@ -124,11 +124,21 @@ namespace SnakesLaddersTue
         }
 
         private async Task RollTheDice() {
-            int roll = random.Next(1, 7);
-            roll = 3;
-            //DiceRollLbl.Text = roll.ToString();
-            CleartheDiceGrid(DiceGrid);
-            FillinDiceGrid(roll, DiceGrid);
+            int roll = 0;
+            int howmany = random.Next(4, 10);
+            int lastthrow = 0;
+            DiceGridBorder.TranslationX = 0;
+            DiceGridBorder.TranslateTo(96, 0, 300*(uint)howmany);
+            for (int i = 0; i < howmany; i++) {
+                //DiceRollLbl.Text = roll.ToString();
+                while(lastthrow == roll)
+                    roll = random.Next(1, 7);
+                lastthrow = roll;
+                await DiceGridBorder.RotateYTo(DiceGridBorder.RotationY + 90, 150);
+                CleartheDiceGrid(DiceGrid);
+                FillinDiceGrid(roll, DiceGrid);
+                await DiceGridBorder.RotateYTo(DiceGridBorder.RotationY + 90, 150);
+            }
             await player1.MovePlayerCharacter(roll);
 
             int[] playerpos = player1.CurrentPosition;
