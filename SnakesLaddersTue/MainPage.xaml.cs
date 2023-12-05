@@ -48,6 +48,10 @@ namespace SnakesLaddersTue
 
             snakeLadderList.Add(new SnakeLadder(5, 3, 9, 6, GameBoardGrid));
 
+            //Straight snakes
+            snakeLadderList.Add(new SnakeLadder(0, 5, 2, 2, GameBoardGrid));
+
+
         }
 
         private static int WhatNumber(int row, int col) {
