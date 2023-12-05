@@ -6,7 +6,7 @@
         private int StartRow;
         private int EndRow;
         private Image image;
-        private Grid grid;
+        public static Grid grid;
 
         public int[] EndPosition{
             get
@@ -18,12 +18,11 @@
             }
         }
 
-        public SnakeLadder(int StartR, int EndR, int StartC, int EndC, Grid grid) {
+        public SnakeLadder(int StartR, int EndR, int StartC, int EndC) {
             this.StartRow = StartR;
             this.EndRow = EndR;
             this.StartCol = StartC;
             this.EndCol = EndC;
-            this.grid = grid;
             if (StartRow > EndRow)
                 placeladderongrid();
             else if(EndRow > StartRow)
