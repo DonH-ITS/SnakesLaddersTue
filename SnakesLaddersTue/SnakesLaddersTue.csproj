@@ -49,6 +49,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appicon.svg" />
+	  <None Remove="Resources\Images\intro.svg" />
+	  <None Remove="Resources\Images\introdark.svg" />
 	  <None Remove="Resources\Images\ladder01.svg" />
 	  <None Remove="Resources\Images\ladder02.svg" />
 	  <None Remove="Resources\Images\player1.svg" />
@@ -67,6 +69,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="WelcomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
