@@ -1,4 +1,5 @@
 ﻿
+using System.Text.Json;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace SnakesLaddersTue
@@ -35,13 +36,31 @@ namespace SnakesLaddersTue
         public void InitialiseVariables()
         {
             CreatetheGrid();
-            set = new Settings();
-            UpdateSettings();
+            InitialiseSettings();
             random = new Random();
             Player.mainGrid = GameBoardGrid;
             player1 = new Player(Player1Piece, "Donny");
             dicerolling = false;
             CreateSnakesandLadders();
+        }
+
+        private void InitialiseSettings() {
+            string filename = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, "settings.json");
+            if (File.Exists(filename)) {
+                try {
+                    using (StreamReader reader = new StreamReader(filename)) {
+                        string jsonstring = reader.ReadToEnd();
+                        set = JsonSerializer.Deserialize<Settings>(jsonstring);
+                    }
+                }
+                catch {
+                    set = new Settings();
+                }
+            }
+            else {
+                set = new Settings();
+            }
+            UpdateSettings();
         }
 
         private void CreateSnakesandLadders() {

@@ -11,6 +11,7 @@ public partial class SettingsPage : ContentPage
 	}
 
     private async void SaveSettingsBtn_Clicked(object sender, EventArgs e) {
+		set.SavetheSettingsFile();
 		await Navigation.PopAsync();
     }
 }
