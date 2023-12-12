@@ -10,6 +10,8 @@ namespace SnakesLaddersTue
         private Player player1;
         private bool dicerolling;
         private List<SnakeLadder> snakeLadderList;
+        private Settings set;
+        private bool fromSettingsPage = false;
 
         public bool Dicerolling
         {
@@ -33,6 +35,8 @@ namespace SnakesLaddersTue
         public void InitialiseVariables()
         {
             CreatetheGrid();
+            set = new Settings();
+            UpdateSettings();
             random = new Random();
             Player.mainGrid = GameBoardGrid;
             player1 = new Player(Player1Piece, "Donny");
@@ -93,7 +97,6 @@ namespace SnakesLaddersTue
                     Border border = new Border
                     {
                         StrokeThickness = 2,
-                        Background = BoardColour,
                         Padding = new Thickness(3, 3),
                         HorizontalOptions = LayoutOptions.Fill,
                         StrokeShape = new RoundRectangle
@@ -118,6 +121,10 @@ namespace SnakesLaddersTue
                             FontAttributes = FontAttributes.Bold
                         }
                     };
+                    if(WhatNumber(i,j) % 2 == 0)
+                        border.SetDynamicResource(Border.BackgroundColorProperty, "GridColour1");
+                    else
+                        border.SetDynamicResource(Border.BackgroundColorProperty, "GridColour2");
 
                     GameBoardGrid.Add(border, j, i);
                 }
@@ -222,8 +229,22 @@ namespace SnakesLaddersTue
             }
         }
 
+        private void UpdateSettings() {
+            Resources["GridColour1"] = Color.FromArgb(set.GRID_COLOUR1);
+            Resources["GridColour2"] = Color.FromArgb(set.GRID_COLOUR2);
+        }
+
         private async void Settings_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(new SettingsPage());
+            fromSettingsPage = true;
+            await Navigation.PushAsync(new SettingsPage(set));
+        }
+
+        protected override void OnNavigatedTo(NavigatedToEventArgs args) {
+            if (fromSettingsPage) {
+                UpdateSettings();
+                fromSettingsPage = false;
+            }
+            base.OnNavigatedTo(args);
         }
     }
 }

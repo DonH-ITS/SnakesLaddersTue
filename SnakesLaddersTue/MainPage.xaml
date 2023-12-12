@@ -6,6 +6,15 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="{AppThemeBinding Light=settings.png, Dark=settingsdark.png}" Clicked="Settings_Clicked"/>
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="GridColour1">#0000AD</Color>
+            <Color x:Key="GridColour2">#FF0000</Color>
+            <Color x:Key="DiceFgColour">#000000</Color>
+            <Color x:Key="DiceBgColour">#FFFFFF</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <VerticalStackLayout>
     <Grid x:Name="GameBoardGrid" BackgroundColor="Blue" HorizontalOptions="Center" 
           VerticalOptions="Center"

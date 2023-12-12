@@ -2,12 +2,15 @@ namespace SnakesLaddersTue;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
+	Settings set;
+	public SettingsPage(Settings s)
 	{
+		set = s;
 		InitializeComponent();
+		BindingContext = set;
 	}
 
-    private void SaveSettingsBtn_Clicked(object sender, EventArgs e) {
-
+    private async void SaveSettingsBtn_Clicked(object sender, EventArgs e) {
+		await Navigation.PopAsync();
     }
 }
