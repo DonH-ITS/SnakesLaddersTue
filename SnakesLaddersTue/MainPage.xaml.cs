@@ -6,13 +6,14 @@ namespace SnakesLaddersTue
 {
     public partial class MainPage : ContentPage
     {
-        private Color BoardColour = Color.FromArgb("#2B0B98");
         private Random random;
-        private Player player1;
+        private List<Player> playerList;
         private bool dicerolling;
         private List<SnakeLadder> snakeLadderList;
         private Settings set;
         private bool fromSettingsPage = false;
+        private int whosturnisit;
+        private int numberofPlayers;
 
         public bool Dicerolling
         {
@@ -31,17 +32,36 @@ namespace SnakesLaddersTue
             InitializeComponent();
             InitialiseVariables();
             BindingContext = this;
+           // this.LayoutChanged += OnWindowChange;
         }
+      /*  private void OnWindowChange(object sender, EventArgs e) {
+            if(this.Width <= 0)
+                return;
+            if (this.Width >= 480)
+                return;
+            double scale = (this.Width - 8) / 480.0;
+            GameBoardGrid.Scale = scale;
+        }*/
 
         public void InitialiseVariables()
         {
             CreatetheGrid();
+            CreatethePlayers();
             InitialiseSettings();
             random = new Random();
-            Player.mainGrid = GameBoardGrid;
-            player1 = new Player(Player1Piece, "Donny");
             dicerolling = false;
             CreateSnakesandLadders();
+        }
+
+        private void CreatethePlayers() {
+            int numberofplayers = Preferences.Default.Get("numberofplayers", 2);
+            Player.mainGrid = GameBoardGrid;
+            playerList = new List<Player>();
+            for(int i=0; i<numberofplayers; i++) {
+                playerList.Add(new Player(i));
+            }
+            whosturnisit = 0;
+            numberofPlayers = numberofplayers;
         }
 
         private void InitialiseSettings() {
@@ -111,10 +131,22 @@ namespace SnakesLaddersTue
         }
 
         private void CreatetheGrid() {
+            double windowWidth = Preferences.Default.Get("windowwidth", 480.0);
+            if(windowWidth < 480) {
+                double newwidth = ((int)windowWidth / 10) * 10;
+                double newheight = ((int)windowWidth / 10) * 12;
+                GameBoardGrid.WidthRequest = newwidth;
+                GameBoardGrid.HeightRequest = newheight;
+            }
+            /*  int margin = 0;
+              if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+                  margin = -2;*/
+            int margin = (DeviceInfo.Current.Platform == DevicePlatform.Android) ? -2 : 0;
             for (int i = 0; i < 10; ++i) {
                 for (int j = 0; j < 10; ++j) {
                     Border border = new Border
                     {
+                        Margin = margin,
                         StrokeThickness = 2,
                         Padding = new Thickness(3, 3),
                         HorizontalOptions = LayoutOptions.Fill,
@@ -185,14 +217,17 @@ namespace SnakesLaddersTue
                 FillinDiceGrid(roll, DiceGrid);
                 await DiceGridBorder.RotateYTo(DiceGridBorder.RotationY + 90, 150);
             }
-            await player1.MovePlayerCharacter(roll);
+            await playerList[whosturnisit].MovePlayerCharacter(roll);
 
-            int[] playerpos = player1.CurrentPosition;
+            int[] playerpos = playerList[whosturnisit].CurrentPosition;
             foreach(var boardpiece in snakeLadderList) {
                 if (boardpiece.IsPlayerOnIt(playerpos[0], playerpos[1])) {
-                    await player1.MovePlayerSnakeLadder(boardpiece.EndPosition[0], boardpiece.EndPosition[1]);
+                    await playerList[whosturnisit].MovePlayerSnakeLadder(boardpiece.EndPosition[0], boardpiece.EndPosition[1]);
                 }
             }
+            whosturnisit++;
+            if (whosturnisit == numberofPlayers)
+                whosturnisit = 0;
         }
 
         private static void CleartheDiceGrid(Grid grid) {

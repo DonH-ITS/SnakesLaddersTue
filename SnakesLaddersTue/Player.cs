@@ -22,12 +22,17 @@ namespace SnakesLaddersTue
             }
         }
 
-        public Player(Image img, string name) {
+        public Player(int playerno) {
             position = 1;
             row = 9;
             column = 0;
-            playerimage = img;
-            this.Name = name;
+            string filename = "player" + (playerno + 1) + ".png";
+            playerimage = new Image
+            {
+                Source = ImageSource.FromFile(filename),
+                ZIndex = 20
+            };
+            mainGrid.Add(playerimage, column, row);
         }
 
         public async Task MovePlayerCharacter(int amount) {

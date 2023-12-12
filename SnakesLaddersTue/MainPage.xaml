@@ -21,8 +21,8 @@
           RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*"
           HeightRequest="576" WidthRequest="480">
 
-            <Image x:Name="Player1Piece" Source="player1.png" ZIndex="20" Scale="0.8"
-                   HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="9" Grid.Column="0"/>
+        <!--    <Image x:Name="Player1Piece" Source="player1.png" ZIndex="20" Scale="0.8"
+                   HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="9" Grid.Column="0"/> -->
             <Border StrokeThickness="2" x:Name="DiceGridBorder"
         StrokeShape="RoundRectangle 4,4,4,4"
         Background="#FFFFFF"

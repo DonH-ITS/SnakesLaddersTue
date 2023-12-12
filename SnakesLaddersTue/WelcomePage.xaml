@@ -19,7 +19,7 @@
 
 
             <Label FontSize="14" Text="Select the Number of Players, then enter their names"/>
-            <Stepper x:Name="stepPlayers" Minimum="2" Maximum="4" Value="2" ValueChanged="stepPlayers_ValueChanged" HorizontalOptions="Center"/>
+            <Stepper x:Name="stepPlayers" Minimum="2" Maximum="4" Value="2" ValueChanged="stepPlayers_ValueChanged"  HorizontalOptions="Center"/>
 
             <Label x:Name="noPlayersText"/>
             <Grid x:Name="PlayerNameGrid" RowDefinitions="50,50,50,50" ColumnDefinitions="*,*,*">
